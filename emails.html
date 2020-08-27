@@ -10,11 +10,13 @@
             var con = document.getElementById("Message").value;
             var pars = con.split(/\r\n|\r|\n/);
 
-            var email = "<!DOCTYPE html><html><head> <style> body { font-family: Arial, Helvetica, sans-serif; } .container { padding: 1em; } .message { padding: 2em; margin: 1em; margin-bottom: 0; margin-top: 3em; border-radius: 15px; } footer { margin: 1em; margin-top: 20px; } .contacts { float: right; } .contacts a { display: block; } img { max-width: 100px; } .logo img { max-width: 100px; } .logo img, h1 { float: left; display: inline; } @media (prefers-color-scheme: dark) { .container, body { background-color: #121212; } .message, .footer-content { background-color: #202020; color: #eeeeee; } a, a:visited { color: #FF4500; } } @media (prefers-color-scheme: light) { .container, body { background-color: #dddddd; } .message, .footer-content { background-color: #eeeeee; color: #121212; } a, a:visited { color: #1167b1; } } </style> </head> <body> <div class='container'> <div class='message'>";
+            var email = "<!DOCTYPE html><html><head> <style> body { font-family: Arial, Helvetica, sans-serif;} .container { padding: 1em; width: 80vw; } .message { padding: 2em; margin: 0.5em; margin-bottom: 0; margin-top: 1em; border-radius: 15px; } .footer-content { margin: 2em; margin-top: 20px; } .contacts { float: right; } .contacts a { display: block; } img { max-width: 100px; } .logo img { max-width: 100px; } .logo img, h3 { float: left; display: block; } @media (prefers-color-scheme: dark) {  body{background-color: #121212;} .message, .footer-content { background-color: #202020; color: #eeeeee; } a, a:visited { color: #FF4500; } } @media (prefers-color-scheme: light) { .message, .footer-content { background-color: #eeeeee; color: #121212; } a, a:visited { color: #1167b1; } } </style> </head> <body> <div class='container'> <div class='message'>";
             var i;
-            for (i = 0; i < pars.length; i++)
-                email = email + "<p>" + pars[i] + "</p>";
-            email += "</div> <footer> <div class='footer-content'> <div class='logo'> <img src='https://i.imgur.com/Omrjx3Vg.png' alt='Logo' /> <h1>Asoby</h1> </div> <div class='contacts'> <a href='+381 63 756 4827'>+381 63 756 4827</a> <a href='itsasoby@gmail.com'>itsasoby@gmail.com</a> <a href='https://itsasoby.github.io/''>itsasoby.github.io</a> 11000 Belgrade, Serbia </div> </div> </footer> </body> </html>";
+            for (i = 0; i < pars.length; i++) {
+                if (pars[i] != '')
+                    email = email + "<p>" + pars[i] + "</p>";
+            }
+            email += "</div> <footer> <div class='footer-content'> <div class='logo'> <img src='https://i.imgur.com/gtSITGZ.png' alt='Logo' /><h3>Asoby</h3></div> <div class='contacts'> <a href='+381 63 756 4827'>+381 63 756 4827</a> <a href='itsasoby@gmail.com'>itsasoby@gmail.com</a> <a href='https://itsasoby.github.io/''>itsasoby.github.io</a> 11000 Belgrade, Serbia </div> </div> </footer> </body> </html>";
 
             var textFileAsBlob = new Blob([email], {
                 type: 'text/html'
