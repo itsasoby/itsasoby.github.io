@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Write emails!</title>
+    <script>
+        function MakeEmail() {
+            var con = document.getElementById("Message").value;
+            var pars = con.split(/\r\n|\r|\n/);
+
+            var email = "<!DOCTYPE html><html><head> <style> body { font-family: Arial, Helvetica, sans-serif; } .container { padding: 1em; } .message { padding: 2em; margin: 1em; margin-bottom: 0; margin-top: 3em; border-radius: 15px; } footer { margin: 1em; margin-top: 20px; } .contacts { float: right; } .contacts a { display: block; } img { max-width: 100px; } .logo img { max-width: 100px; } .logo img, h1 { float: left; display: inline; } @media (prefers-color-scheme: dark) { .container, body { background-color: #121212; } .message, .footer-content { background-color: #202020; color: #eeeeee; } a, a:visited { color: #FF4500; } } @media (prefers-color-scheme: light) { .container, body { background-color: #dddddd; } .message, .footer-content { background-color: #eeeeee; color: #121212; } a, a:visited { color: #1167b1; } } </style> </head> <body> <div class='container'> <div class='message'>";
+            var i;
+            for (i = 0; i < pars.length; i++)
+                email = email + "<p>" + pars[i] + "</p>";
+            email += "</div> <footer> <div class='footer-content'> <div class='logo'> <img src='https://i.imgur.com/Omrjx3Vg.png' alt='Logo' /> <h1>Asoby</h1> </div> <div class='contacts'> <a href='+381 63 756 4827'>+381 63 756 4827</a> <a href='itsasoby@gmail.com'>itsasoby@gmail.com</a> <a href='https://itsasoby.github.io/''>itsasoby.github.io</a> 11000 Belgrade, Serbia </div> </div> </footer> </body> </html>";
+
+            var textFileAsBlob = new Blob([email], {
+                type: 'text/html'
+            });
+            var fileNameToSaveAs = "email.html";
+            var downloadLink = document.createElement("a");
+            downloadLink.download = fileNameToSaveAs;
+            downloadLink.innerHTML = "Download File";
+            if (window.webkitURL != null) {
+                downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+            } else {
+
+                downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+                downloadLink.onclick = destroyClickedElement;
+                downloadLink.style.display = "none";
+                document.body.appendChild(downloadLink);
+            }
+            var win = window.open(downloadLink, '_blank');
+            win.focus();
+            //downloadLink.click();
+
+        }
+    </script>
+    <style>
+        message {
+            font-size: 20px;
+        }
+        
+        .container {
+            padding: 1em;
+        }
+        
+        .message {
+            padding: 2em;
+            margin: 10%;
+            width: 80%;
+            height: 400px;
+            margin-bottom: 0;
+            margin-top: 3em;
+            border-radius: 20px;
+        }
+        
+        footer {
+            margin: 10%;
+            margin-top: 20px;
+        }
+        
+        .contacts {
+            float: right;
+            margin-right: 100px;
+        }
+        
+        .contacts a {
+            display: block;
+        }
+        
+        img {
+            max-width: 100px;
+        }
+        
+        .logo {
+            margin-left: 100px;
+        }
+        
+        .logo img,
+        h1 {
+            float: right;
+            display: inline;
+        }
+        
+        .make-email-button {
+            padding: 1em;
+            font-size: 14px;
+            margin-left: 10%;
+            margin-top: 30px;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            .make-email-button {
+                background-color: #202020;
+                color: #eeeeee;
+                border: 1px solid #eeeeee;
+                border-radius: 20px;
+            }
+            .container,
+            body {
+                background-color: #121212;
+            }
+            .message {
+                background-color: #202020;
+                color: #eeeeee;
+            }
+            .footer-content {
+                color: #fff;
+                margin-top: 1em;
+            }
+            a,
+            a:visited {
+                color: #FF4500;
+            }
+        }
+        
+        @media (prefers-color-scheme: light) {
+            .container,
+            body {
+                background-color: #dddddd;
+            }
+            .message {
+                background-color: #eeeeee;
+                color: #121212;
+            }
+            a,
+            a:visited {
+                color: #1167b1;
+            }
+            .make-email-button {
+                background-color: #eeeeee;
+                color: #121212;
+                border: 1px solid #121212;
+                border-radius: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <textarea class="message" id="Message">
+      </textarea>
+        <input type="button" class="make-email-button" onclick="MakeEmail()" value="Make email!"> </input>
+        <footer>
+            <div class="footer-content">
+                <div class="logo">
+                    <img src="https://i.imgur.com/Omrjx3Vg.png" alt="Logo" />
+                    <h1>by Asoby</h1>
+                </div>
+        </footer>
+        </div>
+</body>
+
+</html>
